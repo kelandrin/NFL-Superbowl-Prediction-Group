@@ -10,6 +10,23 @@ import pandas as pd
 import requests
 import numpy as np
 
+#Defining NFL category object
+class NFL_category_obj:
+    def __init__ (self, nfl_tuple: tuple):
+
+        data_list = nfl_tuple[0].split(",")
+
+        if data_list[0] == "Offense":
+            self.tm_opp = "TM"
+            self.fense = "Offense"
+        else:
+            self.tm_opp = "OPP"
+            self.fense = "Defense"
+
+        self.category = data_list[1].upper()
+        self.columns = data_list[2:]
+        self.columns_not_wanted = nfl_tuple[1]
+
 #Offensive strings
 o1 = 'Offense,Game_Stats,Rk,Team,G,Pts/G,TotPts,Scrm Plys,Yds/G,Yds/P,1st/G,3rd Md,3rd Att,3rd Pct,4th Md,4th Att,4th Pct,Pen,Pen Yds,ToP/G,FUM,Lost,TO,Year'
 o2 = 'Offense,Passing,Rk,Team,G,Pts/G,TotPts,Comp,Att,Pct,Att/G,Yds,Avg,Yds/G,TD,Int,1st,1st%,Lng,20+,40+,Sck,Rate,Year'
@@ -44,23 +61,6 @@ list_of_tables = [(o1,[]),(o2,['G','Pts/G','TotPts','TD']),(o3,['G','Pts/G','Tot
                            (d5,['G','Pts/G','TotPts','Pts','Pts/G','Rsh','Rec']),(d6,['G','Pts/G','TotPts']),
                            (d7,['G','Pts/G','TotPts','SFTY','PDef','Int','TDs','Yds','Lng']),(d8,['G','Pts/G','TotPts','Comb','Total','Ast','Sck','SFTY','FF','Rec','TD'])]
 
-
-#Defining NFL category object
-class NFL_category_obj:
-    def __init__ (self, nfl_tuple: tuple):
-
-        data_list = nfl_tuple[0].split(",")
-
-        if data_list[0] == "Offense":
-            self.tm_opp = "TM"
-            self.fense = "Offense"
-        else:
-            self.tm_opp = "OPP"
-            self.fense = "Defense"
-
-        self.category = data_list[1].upper()
-        self.columns = data_list[2:]
-        self.columns_not_wanted = nfl_tuple[1]
 
 #Creating NFL category objects out of tables
 list_of_NFL_category_objs = []
@@ -114,8 +114,6 @@ def scraper(nfl: object, offensive_category = 'null', defensive_category = 'null
 
     #write to excel
     answer.to_excel(nfl.fense + '_' + nfl.category + ".xlsx")
-
-
 
 #Call Scraper function on each nfl_category_obj
 for nfl_obj in list_of_NFL_category_objs:
