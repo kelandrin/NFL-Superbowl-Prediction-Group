@@ -2,7 +2,7 @@
 """
 Created on Fri Nov  1 12:40:51 2019
 
-@author: vedant / Matthew 
+@author: vedant / Matthew
 """
 
 from bs4 import BeautifulSoup
@@ -118,5 +118,5 @@ def scraper(nfl: object, offensive_category = 'null', defensive_category = 'null
 
 
 #Call Scraper function on each nfl_category_obj
-for nfl_obj in list_of_NFL_category_objs[]:
+for nfl_obj in list_of_NFL_category_objs:
     scraper(nfl_obj)
