@@ -47,7 +47,7 @@ def Team_n_year_n_records_to_front(df_merged:pd.DataFrame) -> pd.DataFrame:
     df_merged.insert(5, my_column5.name, my_column5)
     df_merged.insert(6, my_column6.name, my_column6)
     df_merged.insert(7, my_column7.name, my_column7)
-    
+
     return df_merged[:-12]
 
 #Merges all of the Dataframes and sorts them by year

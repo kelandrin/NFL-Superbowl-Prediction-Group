@@ -52,8 +52,8 @@ def conference_scrape(conference: str) -> pd.DataFrame:
     ready_for_df = []
 
     if conference == 'NFL' or conference == 'AFL':
-        times = 3
-        start_year = 1967
+        times = 4
+        start_year = 1966
     else:
         times = 50
         start_year = 1970

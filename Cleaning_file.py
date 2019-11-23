@@ -89,7 +89,9 @@ def split_function(nfl_data:pd.DataFrame) -> pd.DataFrame:
 
                 #replace missing value with -99999
                 new[0] = new[0].replace('', -99999.9, regex=True)
+                new[0] = new[0].replace(np.nan, -99999.9, regex=True)
                 new[1] = new[1].replace('-', -99999.9, regex=True)
+                new[1] = new[1].replace(np.nan, -99999.9, regex=True)
 
                 #change data type of two new columns from string to integer
                 new[0] = new[0].astype(int)
